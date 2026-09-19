@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aruna's Annam</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#faf8f3;color:#24211d}
+.app{max-width:480px;margin:auto;min-height:100vh;background:#fff}
+header{padding:22px 18px 14px;background:#fff}
+.brand{font-size:25px;font-weight:800}.tag{color:#777;font-size:13px;margin-top:3px}
+.location{margin-top:15px;background:#f6f1e8;padding:11px 13px;border-radius:12px;font-size:13px}
+main{padding:0 18px 90px}
+.hero{margin-top:10px;padding:20px;border-radius:18px;background:#f2e5cf}
+.hero h1{margin:0 0 7px;font-size:25px}.hero p{margin:0;color:#665c50;font-size:14px}
+.section{display:flex;justify-content:space-between;align-items:center;margin:23px 0 12px}.section h2{font-size:18px;margin:0}.link{font-size:13px;color:#8a4d20}
+.card{border:1px solid #eee6db;border-radius:16px;padding:14px;margin-bottom:12px;display:flex;gap:12px;align-items:center}
+.foodimg{width:76px;height:76px;border-radius:13px;background:#ead7bb;display:flex;align-items:center;justify-content:center;font-size:32px}
+.info{flex:1}.info h3{margin:0 0 4px;font-size:16px}.desc{font-size:12px;color:#777}.price{font-weight:800;margin-top:6px}
+button{border:0;border-radius:10px;padding:9px 13px;background:#7b3f19;color:#fff;font-weight:700;cursor:pointer}
+.qty{display:flex;align-items:center;gap:9px;margin-top:7px}.qty button{padding:4px 9px}
+.plan{background:#f8f3ea;border-radius:15px;padding:15px;margin-bottom:10px}.plan strong{font-size:16px}.plan p{font-size:12px;color:#71695f;margin:5px 0 10px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:480px;width:100%;background:#fff;border-top:1px solid #eee;padding:10px 18px;display:flex;justify-content:space-around}
+.nav{font-size:11px;color:#777;text-align:center}.nav.active{color:#7b3f19;font-weight:700}
+.badge{background:#7b3f19;color:#fff;border-radius:20px;padding:3px 7px;font-size:10px}
+#cartBar{display:none;background:#7b3f19;color:#fff;padding:13px 15px;border-radius:13px;margin-top:14px;justify-content:space-between;align-items:center}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand">🍱 Aruna's Annam</div>
+  <div class="tag">Homemade food • Made with care</div>
+  <div class="location">📍 Delivering in <b>Sholinganallur & surrounding areas</b></div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Today's Home Food ❤️</h1>
+    <p>Freshly prepared meals for students, PG residents and office workers.</p>
+  </div>
+
+  <div id="cartBar"><span><b id="cartCount">0</b> items in cart</span><button onclick="checkout()">View Cart</button></div>
+
+  <div class="section"><h2>Today's Menu</h2><span class="link">See all</span></div>
+
+  <div class="card">
+    <div class="foodimg">🍛</div>
+    <div class="info"><h3>Home Veg Meals</h3><div class="desc">Rice • Sambar • Poriyal • Rasam • Curd</div><div class="price">₹99</div></div>
+    <button onclick="add()">Add</button>
+  </div>
+
+  <div class="card">
+    <div class="foodimg">🍗</div>
+    <div class="info"><h3>Chicken Meals</h3><div class="desc">Rice • Chicken curry • Poriyal • Rasam • Curd</div><div class="price">₹149</div></div>
+    <button onclick="add()">Add</button>
+  </div>
+
+  <div class="card">
+    <div class="foodimg">🥘</div>
+    <div class="info"><h3>Chapati Combo</h3><div class="desc">3 Chapati • Kurma • Onion salad</div><div class="price">₹80</div></div>
+    <button onclick="add()">Add</button>
+  </div>
+
+  <div class="section"><h2>Monthly Meal Plans</h2><span class="link">Details</span></div>
+
+  <div class="plan"><strong>🎓 Student Lunch Plan</strong><p>Lunch on selected days • Ideal for PG & hostel students</p><button onclick="plan()">Choose Plan</button></div>
+  <div class="plan"><strong>💼 Office Lunch Plan</strong><p>Weekday lunch • Convenient home-style food at work</p><button onclick="plan()">Choose Plan</button></div>
+  <div class="plan"><strong>🏠 Lunch + Dinner</strong><p>Daily two-meal subscription for regular customers</p><button onclick="plan()">Choose Plan</button></div>
+
+  <div class="section"><h2>How it works</h2></div>
+  <div class="card"><div class="foodimg">1️⃣</div><div class="info"><h3>Choose your meal</h3><div class="desc">Select today's food or a monthly plan.</div></div></div>
+  <div class="card"><div class="foodimg">2️⃣</div><div class="info"><h3>Confirm your address</h3><div class="desc">We deliver around Sholinganallur.</div></div></div>
+  <div class="card"><div class="foodimg">3️⃣</div><div class="info"><h3>Fresh food at your door</h3><div class="desc">Home-style meals delivered fresh.</div></div></div>
+</main>
+
+<div class="bottom">
+  <div class="nav active">🏠<br>Home</div>
+  <div class="nav">🍛<br>Menu</div>
+  <div class="nav">📅<br>Plans</div>
+  <div class="nav">📦<br>Orders</div>
+  <div class="nav">👤<br>Profile</div>
+</div>
+</div>
+
+<script>
+let count=0;
+function add(){count++;document.getElementById('cartCount').textContent=count;document.getElementById('cartBar').style.display='flex'}
+function checkout(){alert('Cart screen — next step: address, delivery slot and payment.')}
+function plan(){alert('Subscription screen — next step: choose plan, delivery days and start date.')}
+</script>
+</body>
+</html>
